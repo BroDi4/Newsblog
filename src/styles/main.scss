@@ -1,0 +1,19 @@
+@import './reset';
+@import './variables';
+
+body {
+	font: {
+		family: 'Roboto', sans-serif;
+		weight: 400;
+		size: 20px;
+	}
+	color: $black;
+	margin: 0;
+}
+
+.container {
+	display: block;
+	max-width: 1190px;
+	margin: 0 auto;
+	padding: 0 5px;
+}

@@ -8,6 +8,21 @@ import HeaderPopup from './HeaderPopup/HeaderPopup';
 const Header = () => {
 	const [activePopup, setActivePopup] = React.useState(false);
 
+	const popupRef = React.useRef(null);
+
+	React.useEffect(() => {
+		const checkOutsideClick = e => {
+			if (popupRef.current && !popupRef.current.contains(e.target)) {
+				setActivePopup(false);
+			}
+		};
+
+		window.addEventListener('mousedown', checkOutsideClick);
+		return () => {
+			window.removeEventListener('mousedown', checkOutsideClick);
+		};
+	}, []);
+
 	return (
 		<header className={styles.root}>
 			<div className={`${styles.inner} container`}>
@@ -15,14 +30,16 @@ const Header = () => {
 					NewsBlog
 				</Link>
 
-				<button
-					onClick={() => setActivePopup(!activePopup)}
-					className={styles.user}
-				>
-					<CircleUserRound size={30} className={styles.icon} />
-					<p>Гость</p>
-				</button>
-				{activePopup && <HeaderPopup />}
+				<div className={styles.userBox} ref={popupRef}>
+					<button
+						onClick={() => setActivePopup(!activePopup)}
+						className={styles.user}
+					>
+						<CircleUserRound size={30} className={styles.icon} />
+						<p>Гость</p>
+					</button>
+					<HeaderPopup status={activePopup} setStatus={setActivePopup} />
+				</div>
 			</div>
 		</header>
 	);

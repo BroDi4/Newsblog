@@ -14,13 +14,18 @@
 }
 
 .inner {
-	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
 
+.userBox {
+	position: relative;
+	padding-right: 10px;
+}
+
 .user {
+	position: relative;
 	display: flex;
 	align-items: center;
 	z-index: 2;

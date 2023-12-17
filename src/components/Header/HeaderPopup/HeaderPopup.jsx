@@ -1,33 +1,36 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import classNames from 'classnames/bind';
 
 import styles from './HeaderPopup.module.scss';
 import LinkButton from '../../UI/LinkButton/LinkButton';
 
-const HeaderPopup = () => {
-	const links = [
-		{ tag: 'Личный кабинет', link: '/user' },
-		{ tag: 'Создать статью', link: '/news/create' },
-	];
+const links = [
+	{ tag: 'Личный кабинет', link: '/user' },
+	{ tag: 'Создать статью', link: '/news/create' },
+];
 
-	const listToRender = (
-		<>
-			{links.map((obj, i) => (
-				<LinkButton key={i} to={obj.link} type='link' className={styles.link}>
-					{obj.tag}
-				</LinkButton>
-			))}
-			<LinkButton type='button' className={styles.link}>
-				Выйти
-			</LinkButton>
-		</>
-	);
+const HeaderPopup = ({ status, setStatus }) => {
+	const cn = classNames.bind(styles);
 
 	return (
-		<div className={styles.root}>
+		<div className={cn('root', { active: status })}>
 			<div className={styles.list}>
 				{false ? (
-					listToRender
+					<>
+						{links.map((obj, i) => (
+							<LinkButton
+								key={i}
+								to={obj.link}
+								type='link'
+								className={styles.link}
+							>
+								{obj.tag}
+							</LinkButton>
+						))}
+						<LinkButton type='button' className={styles.link}>
+							Выйти
+						</LinkButton>
+					</>
 				) : (
 					<>
 						<LinkButton type='link' to={'/'} className={styles.link}>

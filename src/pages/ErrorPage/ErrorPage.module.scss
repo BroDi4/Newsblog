@@ -1,0 +1,30 @@
+@import '/src/styles/variables';
+
+.root {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.link {
+	color: $blue;
+	font-size: 25px;
+}
+
+.text {
+	text-align: center;
+	> p {
+		font-size: 30px;
+		margin-bottom: 20px;
+	}
+}
+
+.title {
+	font: {
+		weight: bold;
+		size: 72px;
+	}
+	color: $blue;
+}

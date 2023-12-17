@@ -9,7 +9,7 @@ const Header = () => {
 	const [activePopup, setActivePopup] = React.useState(false);
 
 	return (
-		<div className={styles.root}>
+		<header className={styles.root}>
 			<div className={`${styles.inner} container`}>
 				<Link to={'/'} className={styles.logo}>
 					NewsBlog
@@ -24,7 +24,7 @@ const Header = () => {
 				</button>
 				{activePopup && <HeaderPopup />}
 			</div>
-		</div>
+		</header>
 	);
 };
 

@@ -1,0 +1,21 @@
+@import '/src/styles/variables';
+
+.linkBtn {
+	position: relative;
+
+	&::after {
+		position: absolute;
+		top: 120%;
+		left: 0;
+		width: 0;
+		background-color: $blue;
+		height: 2px;
+		content: '';
+		transition: width 0.2s linear;
+	}
+	&:hover {
+		&::after {
+			width: 100%;
+		}
+	}
+}

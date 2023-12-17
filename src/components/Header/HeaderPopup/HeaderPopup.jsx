@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './HeaderPopup.module.scss';
+import LinkButton from '../../UI/LinkButton/LinkButton';
 
 const HeaderPopup = () => {
 	const links = [
@@ -11,12 +12,14 @@ const HeaderPopup = () => {
 
 	const listToRender = (
 		<>
-			{links.map(obj => (
-				<Link className={styles.link} to={obj.link}>
+			{links.map((obj, i) => (
+				<LinkButton key={i} to={obj.link} type='link' className={styles.link}>
 					{obj.tag}
-				</Link>
+				</LinkButton>
 			))}
-			<button className={styles.link}>Выйти</button>
+			<LinkButton type='button' className={styles.link}>
+				Выйти
+			</LinkButton>
 		</>
 	);
 
@@ -27,8 +30,12 @@ const HeaderPopup = () => {
 					listToRender
 				) : (
 					<>
-						<Link className={styles.link}>Вход</Link>
-						<Link className={styles.link}>Регистрация</Link>
+						<LinkButton type='link' to={'/'} className={styles.link}>
+							Вход
+						</LinkButton>
+						<LinkButton type='link' to={'/'} className={styles.link}>
+							Регистрация
+						</LinkButton>
 					</>
 				)}
 			</div>

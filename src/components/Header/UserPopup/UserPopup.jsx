@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './HeaderPopup.module.scss';
+import styles from './UserPopup.module.scss';
 import LinkButton from '../../UI/LinkButton/LinkButton';
 
 const links = [
@@ -9,7 +9,7 @@ const links = [
 	{ tag: 'Создать статью', link: '/news/create' },
 ];
 
-const HeaderPopup = ({ status, setStatus }) => {
+const UserPopup = ({ status }) => {
 	const cn = classNames.bind(styles);
 
 	return (
@@ -46,4 +46,4 @@ const HeaderPopup = ({ status, setStatus }) => {
 	);
 };
 
-export default HeaderPopup;
+export default UserPopup;

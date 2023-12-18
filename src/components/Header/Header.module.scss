@@ -5,36 +5,8 @@
 	padding: 20px 0;
 }
 
-.logo {
-	display: block;
-	padding: 5px 10px;
-	border-radius: 5px;
-	background-color: $blue;
-	color: $white;
-}
-
 .inner {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-}
-
-.userBox {
-	position: relative;
-	padding-right: 10px;
-}
-
-.user {
-	position: relative;
-	display: flex;
-	align-items: center;
-	z-index: 2;
-	> p {
-		margin-left: 10px;
-		font-size: 18px;
-	}
-}
-
-.icon {
-	color: $black;
 }

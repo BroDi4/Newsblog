@@ -1,0 +1,9 @@
+@import '/src/styles/variables';
+
+.logo {
+	display: block;
+	padding: 5px 10px;
+	border-radius: 5px;
+	background-color: $blue;
+	color: $white;
+}

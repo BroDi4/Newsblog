@@ -1,3 +1,7 @@
 $blue: #516fc8;
 $black: #1e1c1c;
+$black-alpha: rgba(
+	$color: $black,
+	$alpha: 0.3,
+);
 $white: #ffffff;

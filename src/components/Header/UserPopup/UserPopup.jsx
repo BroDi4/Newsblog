@@ -33,10 +33,10 @@ const UserPopup = ({ status }) => {
 					</>
 				) : (
 					<>
-						<LinkButton type='link' to={'/'} className={styles.link}>
+						<LinkButton type='link' to={'/login'} className={styles.link}>
 							Вход
 						</LinkButton>
-						<LinkButton type='link' to={'/'} className={styles.link}>
+						<LinkButton type='link' to={'/register'} className={styles.link}>
 							Регистрация
 						</LinkButton>
 					</>

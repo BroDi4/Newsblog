@@ -15,32 +15,14 @@ const UserPopup = ({ status }) => {
 	return (
 		<div className={cn('root', { active: status })}>
 			<div className={styles.list}>
-				{false ? (
-					<>
-						{links.map((obj, i) => (
-							<LinkButton
-								key={i}
-								to={obj.link}
-								type='link'
-								className={styles.link}
-							>
-								{obj.tag}
-							</LinkButton>
-						))}
-						<LinkButton type='button' className={styles.link}>
-							Выйти
-						</LinkButton>
-					</>
-				) : (
-					<>
-						<LinkButton type='link' to={'/login'} className={styles.link}>
-							Вход
-						</LinkButton>
-						<LinkButton type='link' to={'/register'} className={styles.link}>
-							Регистрация
-						</LinkButton>
-					</>
-				)}
+				{links.map((obj, i) => (
+					<LinkButton key={i} to={obj.link} type='link' className={styles.link}>
+						{obj.tag}
+					</LinkButton>
+				))}
+				<LinkButton type='button' className={styles.link}>
+					Выйти
+				</LinkButton>
 			</div>
 		</div>
 	);

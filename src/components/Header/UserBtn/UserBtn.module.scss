@@ -1,0 +1,13 @@
+@import '/src/styles/variables';
+
+.userBtn {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: $black;
+	z-index: 2;
+	> p {
+		margin-left: 10px;
+		font-size: 18px;
+	}
+}

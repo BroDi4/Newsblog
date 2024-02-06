@@ -2,13 +2,10 @@ import React from 'react';
 
 import styles from './AuthForm.module.scss';
 
-const AuthForm = ({ title, children }) => {
+const AuthForm = ({ children }) => {
 	return (
 		<div className={styles.root}>
-			<form className={styles.form}>
-				<h1>{title}</h1>
-				{children}
-			</form>
+			<form className={styles.form}>{children}</form>
 		</div>
 	);
 };

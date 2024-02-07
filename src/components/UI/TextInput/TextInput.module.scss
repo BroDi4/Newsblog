@@ -1,0 +1,26 @@
+@import '/src/styles/variables';
+
+.root {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.input {
+	border: 1px solid $black-alpha;
+	border-radius: 5px;
+	padding: 10px 5px 10px 50px;
+	width: 100%;
+
+	font-size: 18px;
+	&:focus {
+		outline: $blue 1px solid;
+	}
+}
+
+.icon {
+	width: 25px;
+	position: absolute;
+	left: 15px;
+	color: $black-alpha;
+}

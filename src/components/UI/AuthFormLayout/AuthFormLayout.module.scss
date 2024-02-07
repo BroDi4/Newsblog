@@ -1,0 +1,11 @@
+@import '/src/styles/variables';
+.root {
+	display: flex;
+	justify-content: center;
+}
+
+.form {
+	width: 100%;
+	max-width: 400px;
+	margin-top: 200px;
+}

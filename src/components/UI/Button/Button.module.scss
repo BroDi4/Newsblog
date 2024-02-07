@@ -1,0 +1,20 @@
+@import '/src/styles/variables';
+
+.root {
+	display: inline-block;
+	background-color: $blue;
+	color: $white;
+	border-radius: 5px;
+	padding: 10px 30px;
+
+	transition: background-color 0.2s ease-in-out;
+	&:hover {
+		background-color: darken($blue, 5%);
+	}
+	&:disabled {
+		background-color: lighten($blue, 5%);
+
+		cursor: auto;
+		pointer-events: none;
+	}
+}

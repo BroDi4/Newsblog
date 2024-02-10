@@ -2,8 +2,9 @@ import React from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Login.module.scss';
-import AuthFormLayout from '../../components/UI/AuthFormLayout/AuthFormLayout.jsx';
-import LoginForm from '../../components/forms/LoginForm/LoginForm.jsx';
+import AuthFormLayout from '../../components/UI/AuthFormLayout/AuthFormLayout';
+import LoginForm from '../../components/forms/LoginForm/LoginForm';
+import RegisterForm from '../../components/forms/RegisterForm/RegisterForm';
 
 const cn = classNames.bind(styles);
 
@@ -27,7 +28,9 @@ const Login = () => {
 					</button>
 				))}
 			</div>
-			<LoginForm />
+
+			{select === 'login' && <LoginForm />}
+			{select === 'register' && <RegisterForm />}
 		</AuthFormLayout>
 	);
 };

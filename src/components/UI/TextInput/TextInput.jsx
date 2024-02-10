@@ -4,29 +4,35 @@ import styles from './TextInput.module.scss';
 import { Lock, Mail, User } from 'lucide-react';
 
 const FormInput = React.forwardRef(
-	({ type = 'text', onChange, onBlur, name, logo, ...rest }, ref) => {
+	({ type = 'text', onChange, onBlur, name, logo, error, ...rest }, ref) => {
+		const iconComponent =
+			logo === 'email' ? (
+				<Mail className={styles.icon} />
+			) : logo === 'user' ? (
+				<User className={styles.icon} />
+			) : logo === 'password' ? (
+				<Lock className={styles.icon} />
+			) : (
+				<></>
+			);
+
 		return (
-			<div className={styles.root}>
-				{logo === 'email' ? (
-					<Mail className={styles.icon} />
-				) : logo === 'user' ? (
-					<User className={styles.icon} />
-				) : logo === 'password' ? (
-					<Lock className={styles.icon} />
-				) : (
-					<></>
-				)}
-				<input
-					id={name}
-					onChange={onChange}
-					onBlur={onBlur}
-					name={name}
-					ref={ref}
-					type={type}
-					{...rest}
-					className={styles.input}
-				/>
-			</div>
+			<>
+				<div className={styles.root}>
+					{iconComponent}
+					<input
+						id={name}
+						onChange={onChange}
+						onBlur={onBlur}
+						name={name}
+						ref={ref}
+						type={type}
+						{...rest}
+						className={styles.input}
+					/>
+				</div>
+				{error && <span className={styles.error}>{error}</span>}
+			</>
 		);
 	}
 );

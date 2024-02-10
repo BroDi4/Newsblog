@@ -5,10 +5,10 @@ import styles from './LoginForm.module.scss';
 import TextInput from '../../UI/TextInput/TextInput';
 import Button from '../../UI/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearError, signInAction } from '../../../redux/slices/authSlice';
+import { clearError } from '../../../redux/slices/authSlice';
+import { signInAction } from '../../../redux/api/authApi';
 import ErorrMessageBlock from '../../UI/ErrorMessageBlock/ErorrMessageBlock';
 import { Loader2 } from 'lucide-react';
-import Message from '../../UI/Message/Message';
 
 const Login = () => {
 	const { signInError, status } = useSelector(state => state.auth);
@@ -39,16 +39,16 @@ const Login = () => {
 					type={'email'}
 					logo={'email'}
 					placeholder={'Enter your email'}
+					error={errors.email?.message}
 				/>
-				{errors.email?.message && <Message msg={errors.email?.message} />}
 
 				<TextInput
 					{...register('password', { required: 'Введите пароль' })}
 					type={'password'}
 					logo={'password'}
 					placeholder={'Enter your password'}
+					error={errors.password?.message}
 				/>
-				{errors.password?.message && <Message msg={errors.password?.message} />}
 
 				{signInError && <ErorrMessageBlock msg={signInError} />}
 			</div>

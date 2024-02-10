@@ -1,1 +1,8 @@
 @import '/src/styles/variables';
+
+.formInner {
+	margin-bottom: 20px;
+	> div {
+		margin-top: 15px;
+	}
+}

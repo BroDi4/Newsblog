@@ -7,7 +7,7 @@ import Button from '../../UI/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearError } from '../../../redux/slices/authSlice';
 import { signInAction } from '../../../redux/api/authApi';
-import ErorrMessageBlock from '../../UI/ErrorMessageBlock/ErorrMessageBlock';
+import ErrorMessageBlock from '../../UI/ErrorMessageBlock/ErrorMessageBlock';
 import { Loader2 } from 'lucide-react';
 
 const Login = () => {
@@ -28,7 +28,10 @@ const Login = () => {
 	}, []);
 
 	const onSubmit = data => {
-		dispatch(signInAction(data));
+		let formData = new FormData();
+		formData.append('email', data.email);
+		formData.append('password', data.password);
+		dispatch(signInAction(formData));
 	};
 
 	return (
@@ -38,7 +41,7 @@ const Login = () => {
 					{...register('email', { required: 'Введите e-mail' })}
 					type={'email'}
 					logo={'email'}
-					placeholder={'Enter your email'}
+					placeholder={'Введите e-mail'}
 					error={errors.email?.message}
 				/>
 
@@ -46,11 +49,11 @@ const Login = () => {
 					{...register('password', { required: 'Введите пароль' })}
 					type={'password'}
 					logo={'password'}
-					placeholder={'Enter your password'}
+					placeholder={'Введите пароль'}
 					error={errors.password?.message}
 				/>
 
-				{signInError && <ErorrMessageBlock msg={signInError} />}
+				{signInError && <ErrorMessageBlock msg={signInError} />}
 			</div>
 
 			<Button

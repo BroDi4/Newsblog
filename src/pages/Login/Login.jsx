@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Login.module.scss';
-import AuthFormLayout from '../../components/UI/AuthFormLayout/AuthFormLayout';
+import AuthFormLayout from '../../components/forms/AuthFormLayout/AuthFormLayout';
 import LoginForm from '../../components/forms/LoginForm/LoginForm';
 import RegisterForm from '../../components/forms/RegisterForm/RegisterForm';
 

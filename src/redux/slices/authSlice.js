@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signInAction } from '../api/authApi';
+import { signInAction, signUpAction } from '../api/authApi';
 
 const initialState = {
 	userdata: null,
 	token: null,
 	signInError: null,
+	signUpError: null,
 	status: null,
 };
 
@@ -14,7 +15,7 @@ const authSlice = createSlice({
 	reducers: {
 		clearError: state => {
 			state.signInError = null;
-			state.status = null;
+			state.signUpError = null;
 		},
 	},
 	extraReducers: builder => {
@@ -33,6 +34,22 @@ const authSlice = createSlice({
 			})
 			.addCase(signInAction.rejected, (state, action) => {
 				state.signInError = action.payload;
+				state.status = 'error';
+			})
+			.addCase(signUpAction.fulfilled, (state, action) => {
+				const { token, ...data } = action.payload;
+				state.userdata = data;
+				state.token = token;
+				state.status = 'fullfilled';
+			})
+			.addCase(signUpAction.pending, state => {
+				state.userdata = null;
+				state.token = null;
+				state.signUpError = null;
+				state.status = 'loading';
+			})
+			.addCase(signUpAction.rejected, (state, action) => {
+				state.signUpError = action.payload;
 				state.status = 'error';
 			});
 	},

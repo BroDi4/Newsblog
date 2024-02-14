@@ -8,30 +8,31 @@ import styles from './RegisterForm.module.scss';
 import TextInput from '../../UI/TextInput/TextInput';
 import Button from '../../UI/Button/Button';
 import ErrorMessageBlock from '../../UI/ErrorMessageBlock/ErrorMessageBlock';
+import FileInput from '../../UI/FileInput/FileInput';
 
 const Register = () => {
 	const { signUpError, status } = useSelector(state => state.auth);
 	const dispatch = useDispatch();
-
 	const {
 		handleSubmit,
 		register,
-		getValues,
+		watch,
 		setError,
+		setValue,
+		clearErrors,
 		formState: { isValid, errors },
 	} = useForm({
 		defaultValues: {
-			avatarUrl: '',
-			email: 'nuallo@mail.ru',
-			name: 'allo',
-			password: '123',
-			confirmPassword: '123',
+			avatar: {},
+			email: '',
+			name: '',
+			password: '',
+			confirmPassword: '',
 		},
 		mode: 'onTouched',
 	});
 
 	const handleSignUpError = React.useCallback(err => {
-		console.log(err);
 		if (Array.isArray(err)) {
 			err.map(value =>
 				setError(value.path, { type: 'custom', message: value.msg })
@@ -48,6 +49,10 @@ const Register = () => {
 		formData.append('email', data.email);
 		formData.append('name', data.name);
 		formData.append('password', data.password);
+
+		if (Object.keys(data.avatar).length > 0) {
+			formData.append('avatar', data.avatar[0]);
+		}
 		dispatch(signUpAction(formData));
 	};
 
@@ -59,6 +64,14 @@ const Register = () => {
 					logo={'user'}
 					placeholder={'Введите имя'}
 					error={errors.name?.message}
+				/>
+
+				<FileInput
+					{...register('avatar')}
+					placeholder={'Выберите или перетащите фото'}
+					value={watch('avatar')}
+					error={errors.avatar?.message}
+					formActions={{ setError, setValue, clearErrors }}
 				/>
 
 				<TextInput
@@ -82,7 +95,7 @@ const Register = () => {
 					{...register('confirmPassword', {
 						required: 'Подтвердите пароль',
 						validate: value =>
-							value === getValues('password') || 'Пароли не совпадают',
+							value === watch('password') || 'Пароли не совпадают',
 					})}
 					logo={'password'}
 					placeholder={'Подтвердите ваш пароль'}

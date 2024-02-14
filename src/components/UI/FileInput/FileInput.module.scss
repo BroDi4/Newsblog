@@ -1,0 +1,39 @@
+@import '/src/styles/variables';
+
+.root {
+	outline: 1px dashed $black-alpha;
+	border-radius: 5px;
+	&.active {
+		outline: 2px dashed $blue;
+	}
+}
+
+.label {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	padding: 10px 5px 10px 15px;
+	> span {
+		color: $blue;
+		margin-left: 10px;
+	}
+}
+
+.icon {
+	width: 25px;
+	color: $black-alpha;
+}
+
+.selectedFile {
+	color: $blue;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 5px;
+}
+
+.error {
+	font-size: 15px;
+	color: $red;
+}

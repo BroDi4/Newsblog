@@ -25,7 +25,7 @@ export const signUpAction = createAsyncThunk(
 		try {
 			const { data } = await API.post('/user/register', formData, {
 				headers: {
-					'Content-Type': 'application/json',
+					'Content-Type': 'multipart/form-data',
 				},
 			});
 			localStorage.setItem('token', data.token);

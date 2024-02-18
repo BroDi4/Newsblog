@@ -1,5 +1,4 @@
 import React from 'react';
-import { AlertTriangle } from 'lucide-react';
 import { useRouteError } from 'react-router-dom';
 
 import styles from './ErrorPage.module.scss';

@@ -58,7 +58,7 @@ const FileInput = React.forwardRef(
 				});
 			}
 		};
-		//TOFIX: error remains after adding file by input
+		//FEAT: AUTH on reload page, profile in header
 		return (
 			<>
 				<div
@@ -67,7 +67,11 @@ const FileInput = React.forwardRef(
 					onDragLeave={dragLeaveHandler}
 					onDrop={dropFileHandler}
 				>
-					<label htmlFor={name} className={styles.label}>
+					<label
+						onClick={() => clearErrors('avatar')}
+						htmlFor={name}
+						className={styles.label}
+					>
 						<Upload className={styles.icon} />
 						<span>{placeholder}</span>
 						<input

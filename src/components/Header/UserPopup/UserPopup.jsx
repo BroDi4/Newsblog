@@ -3,14 +3,23 @@ import classNames from 'classnames/bind';
 
 import styles from './UserPopup.module.scss';
 import LinkButton from '../../UI/LinkButton/LinkButton';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../redux/slices/authSlice';
 
 const links = [
 	{ tag: 'Личный кабинет', link: '/user' },
 	{ tag: 'Создать статью', link: '/news/create' },
 ];
 
+const cn = classNames.bind(styles);
+
 const UserPopup = ({ status }) => {
-	const cn = classNames.bind(styles);
+	const dispatch = useDispatch();
+
+	const onClickLogout = () => {
+		localStorage.removeItem('token');
+		dispatch(logout());
+	};
 
 	return (
 		<div className={cn('root', { active: status })}>
@@ -20,7 +29,11 @@ const UserPopup = ({ status }) => {
 						{obj.tag}
 					</LinkButton>
 				))}
-				<LinkButton type='button' className={styles.link}>
+				<LinkButton
+					onClick={onClickLogout}
+					type='button'
+					className={styles.link}
+				>
 					Выйти
 				</LinkButton>
 			</div>

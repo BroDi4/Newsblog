@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signInAction, signUpAction } from '../api/authApi';
+import { authAction, signInAction, signUpAction } from '../api/authApi';
 
 const initialState = {
 	userdata: null,
 	token: null,
 	signInError: null,
 	signUpError: null,
+	authError: null,
 	status: null,
 };
 
@@ -16,6 +17,14 @@ const authSlice = createSlice({
 		clearError: state => {
 			state.signInError = null;
 			state.signUpError = null;
+			state.authError = null;
+		},
+		logout: state => {
+			state.userdata = null;
+			state.token = null;
+			state.signInError = null;
+			state.signUpError = null;
+			state.authError = null;
 		},
 	},
 	extraReducers: builder => {
@@ -51,10 +60,26 @@ const authSlice = createSlice({
 			.addCase(signUpAction.rejected, (state, action) => {
 				state.signUpError = action.payload;
 				state.status = 'error';
+			})
+			.addCase(authAction.fulfilled, (state, action) => {
+				const { token, ...data } = action.payload;
+				state.userdata = data;
+				state.token = token;
+				state.status = 'fullfilled';
+			})
+			.addCase(authAction.pending, state => {
+				state.userdata = null;
+				state.token = null;
+				state.authError = null;
+				state.status = 'loading';
+			})
+			.addCase(authAction.rejected, (state, action) => {
+				state.authError = action.payload;
+				state.status = 'error';
 			});
 	},
 });
 
-export const { clearError } = authSlice.actions;
+export const { clearError, logout } = authSlice.actions;
 
 export default authSlice.reducer;

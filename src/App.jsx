@@ -4,16 +4,22 @@ import {
 	createBrowserRouter,
 	Navigate,
 } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './styles/main.scss';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
-import Login from './pages/Login/Login';
+import Login from './pages/Login';
+import { authAction } from './redux/api/authApi';
 
 const App = () => {
 	const userdata = useSelector(state => state.auth.userdata);
+	const dispatch = useDispatch();
+
+	React.useEffect(() => {
+		dispatch(authAction());
+	}, []);
 	const router = createBrowserRouter([
 		{
 			path: '/',

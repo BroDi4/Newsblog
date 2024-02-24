@@ -11,3 +11,20 @@
 		font-size: 18px;
 	}
 }
+
+.imgBlock {
+	display: block;
+	width: 40px;
+	height: 40px;
+	border-radius: 50px;
+	overflow: hidden;
+	&.active {
+		border: 1px solid $blue;
+	}
+}
+
+.icon {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}

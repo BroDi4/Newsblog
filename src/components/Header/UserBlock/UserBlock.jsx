@@ -1,15 +1,14 @@
 import React from 'react';
 
-import { CircleUserRound } from 'lucide-react';
-
 import styles from './UserBlock.module.scss';
 import UserPopup from '../UserPopup/UserPopup';
 import UserBtn from '../UserBtn/UserBtn';
+import { useSelector } from 'react-redux';
 
 const UserBlock = () => {
 	const [activePopup, setActivePopup] = React.useState(false);
 
-	const userdata = false;
+	const userdata = useSelector(state => state.auth.userdata);
 	const popupRef = React.useRef(null);
 
 	React.useEffect(() => {
@@ -27,14 +26,12 @@ const UserBlock = () => {
 
 	return (
 		<div className={styles.root} ref={popupRef}>
-			{userdata ? (
-				<>
-					<UserBtn type='btn' onClick={() => setActivePopup(!activePopup)} />
-					<UserPopup status={activePopup} />
-				</>
-			) : (
-				<UserBtn type='link' href={'/login'} />
-			)}
+			<UserBtn
+				userdata={userdata}
+				onClick={() => setActivePopup(!activePopup)}
+				href='/login'
+			/>
+			{userdata && <UserPopup status={activePopup} />}
 		</div>
 	);
 };

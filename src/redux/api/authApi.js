@@ -35,3 +35,15 @@ export const signUpAction = createAsyncThunk(
 		}
 	}
 );
+
+export const authAction = createAsyncThunk(
+	'auth/authAction',
+	async (_, { rejectWithValue }) => {
+		try {
+			const { data } = await API.get('/user/auth');
+			return data;
+		} catch (err) {
+			return rejectWithValue(handleError(err));
+		}
+	}
+);
